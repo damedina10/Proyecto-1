@@ -13,7 +13,7 @@
 // Librerías
 //-------------------------------------------------------------------------------------------------
 #include <Arduino.h>
-
+#include <driver/adc.h>
 //-------------------------------------------------------------------------------------------------
 // Definición de pines
 //-------------------------------------------------------------------------------------------------
@@ -68,5 +68,17 @@ void loop() {
 void configurarboton(void){
   //Adjuntamos la interrupción a un pin
   attachInterrupt(B1,ISRboton, HIGH);
+  
+}
+
+//-------------------------------------------------------------------------------------------------
+// función para configurar el ADC del sensor 
+//-------------------------------------------------------------------------------------------------
+void configurarsensor(void){
+  //Configuramos el ancho de bits del ADC
+  adc2_config_width(ADC_WIDTH_BIT_12);
+
+  //Configuramos el canal y la atenuación
+  adc2_config_channel_atten(ADC2_CHANNEL_7,ADC_ATTEN_DB_0);
   
 }
