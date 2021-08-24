@@ -27,7 +27,7 @@
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
-
+int lectura = adc2_get_raw(ADC2_CHANNEL_8);
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
@@ -79,6 +79,6 @@ void configurarsensor(void){
   adc2_config_width(ADC_WIDTH_BIT_12);
 
   //Configuramos el canal y la atenuación
-  adc2_config_channel_atten(ADC2_CHANNEL_7,ADC_ATTEN_DB_0);
+  adc2_config_channel_atten(ADC2_CHANNEL_8,ADC_ATTEN_DB_0);
   
 }
