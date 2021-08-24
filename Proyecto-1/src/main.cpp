@@ -53,3 +53,11 @@ void loop() {
   
 }
 
+//-------------------------------------------------------------------------------------------------
+// función para configurar la interrupción del botón 
+//-------------------------------------------------------------------------------------------------
+void configurarboton(void){
+  //Adjuntamos la interrupción a un pin
+  attachInterrupt(B1,ISRboton, HIGH);
+  
+}
