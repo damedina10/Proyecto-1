@@ -58,6 +58,10 @@ void setup() {
   //Sensor
   pinMode(sensor,INPUT_PULLUP);
 
+  //Se llama a la función para configurar el boton
+  configurarboton();
+  //Se llama a la función para configurar el sensor
+  configurarsensor();
 }
 
 //-------------------------------------------------------------------------------------------------
