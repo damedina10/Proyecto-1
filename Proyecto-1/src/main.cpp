@@ -41,6 +41,7 @@ int medicion = 0;
 void configurarboton(void);
 void configurarsensor(void);
 void configurarlrojo(void);
+void configurarlverde(void);
 
 //-------------------------------------------------------------------------------------------------
 // ISR
