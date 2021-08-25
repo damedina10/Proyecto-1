@@ -97,3 +97,10 @@ void configurarsensor(void){
   adc2_config_channel_atten(ADC2_CHANNEL_8,ADC_ATTEN_DB_0);
   
 }
+
+//-------------------------------------------------------------------------------------------------
+// función para configurar la señal PMW del led rojo
+//-------------------------------------------------------------------------------------------------
+void configurarlrojo(void){
+  
+}
