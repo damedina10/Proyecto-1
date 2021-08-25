@@ -104,4 +104,6 @@ void configurarsensor(void){
 void configurarlrojo(void){
   //Se establece que la frecuencia de la señal PMW sea 60Hz
   ledcSetup(1,60,8);
+  //Adjuntamos la señal PMW a un pin
+  ledcAttachPin(Ledrojo, 1);
 }
