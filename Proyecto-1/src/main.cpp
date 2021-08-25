@@ -119,6 +119,8 @@ void loop() {
     ledcWrite(2,0); //El LED verde se mantiene apagado
     //Dutycycle = 75
     ledcWrite(1,191);
+    //El servo apunta hacia el LED rojo
+    ledcWrite(0,27);
   }
 }
 
