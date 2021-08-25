@@ -168,5 +168,6 @@ void configurarlazul(void){
 // función para la señal PMW del servo
 //-------------------------------------------------------------------------------------------------
 void configurarservo(void){
-  
+  //frec = 1/20ms = 50
+  ledcSetup(0,50,8);
 }
