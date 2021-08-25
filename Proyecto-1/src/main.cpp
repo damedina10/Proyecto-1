@@ -86,12 +86,20 @@ void setup() {
 // Loop principal
 //-------------------------------------------------------------------------------------------------
 void loop() {
-  if(medicion < 370){
-    //Cuando la temperatura sea menor a 37° se enciende el LED verde 
+  if(medicion < 371){
+    //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
     ledcWrite(3,0); //El LED azul se mantiene apagado
     //Dutycycle = 75
     ledcWrite(2,191);
+  }
+  if(370 < medicion < 376){
+    //Cuando la temperatura sea mayor a 37° y menor o igual a 37.5°
+    //se enciende el LED azul 
+    ledcWrite(1,0); //El LED rojo se mantiene apagado
+    ledcWrite(2,0); //El LED verde se mantiene apagado
+    //Dutycycle = 75
+    ledcWrite(3,191);
   }
 }
 
