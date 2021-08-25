@@ -55,6 +55,9 @@ void setup() {
   //Botón
   pinMode(B1,INPUT_PULLUP);
 
+  //Sensor
+  pinMode(sensor,INPUT_PULLUP);
+
 }
 
 //-------------------------------------------------------------------------------------------------
