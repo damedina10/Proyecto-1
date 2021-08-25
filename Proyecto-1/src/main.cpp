@@ -27,7 +27,8 @@
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
-int lectura = adc2_get_raw(ADC2_CHANNEL_8);
+int lectura;
+int medicion;
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
@@ -42,7 +43,8 @@ void configurarsensor(void);
 
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
-  
+  lectura = adc2_get_raw(ADC2_CHANNEL_8);
+  medicion = lectura * 100;
 }
 
 
