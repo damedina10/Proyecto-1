@@ -45,6 +45,7 @@ void configurarsensor(void);
 void configurarlrojo(void);
 void configurarlverde(void);
 void configurarlazul(void);
+void configurarservo(void);
 
 //-------------------------------------------------------------------------------------------------
 // ISR
@@ -85,6 +86,8 @@ void setup() {
   configurarlverde();
   //Se llama a la función para configurar la señal PMW del LED azul
   configurarlazul();
+  //Se llama a la función para configurar la señal PMW del servo
+  configurarservo();
 }
 
 //-------------------------------------------------------------------------------------------------
