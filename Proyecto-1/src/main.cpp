@@ -63,6 +63,11 @@ void setup() {
   //Sensor
   pinMode(sensor,INPUT_PULLUP);
 
+  //LED RGB
+  pinMode(Ledrojo, OUTPUT);
+  pinMode(Ledverde, OUTPUT);
+  pinMode(Ledazul, OUTPUT);
+
   //Se llama a la función para configurar el boton
   configurarboton();
   //Se llama a la función para configurar el sensor
