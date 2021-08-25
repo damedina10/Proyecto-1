@@ -170,4 +170,6 @@ void configurarlazul(void){
 void configurarservo(void){
   //frec = 1/20ms = 50
   ledcSetup(0,50,8);
+  //Adjuntamos la señal PMW a un pin
+  ledcAttachPin(servo, 0);
 }
