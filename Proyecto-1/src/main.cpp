@@ -52,7 +52,8 @@ void IRAM_ATTR ISRboton(){
 // Configuración del sistema
 //-------------------------------------------------------------------------------------------------
 void setup() {
-  
+  //Botón
+  pinMode(B1,INPUT_PULLUP);
 
 }
 
