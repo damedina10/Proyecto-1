@@ -72,6 +72,9 @@ void setup() {
   pinMode(Ledverde, OUTPUT);
   pinMode(Ledazul, OUTPUT);
 
+  //Servo
+  pinMode(servo,OUTPUT);
+
   //Se llama a la función para configurar el boton
   configurarboton();
   //Se llama a la función para configurar el sensor
