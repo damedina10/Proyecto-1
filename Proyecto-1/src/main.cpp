@@ -28,6 +28,8 @@
 #define Ledverde 14
 #define Ledazul 12
 
+//Servo
+#define servo 5
 
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
