@@ -110,6 +110,8 @@ void loop() {
     ledcWrite(2,0); //El LED verde se mantiene apagado
     //Dutycycle = 75
     ledcWrite(3,191);
+    //El servo apunta hacia el LED azul
+    ledcWrite(0,22);
   }
   if(medicion > 375){
     //Cuando la temperatura sea mayor a 37.5° se enciende el LED rojo  
