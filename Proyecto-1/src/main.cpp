@@ -126,3 +126,12 @@ void configurarlverde(void){
   //Adjuntamos la señal PMW a un pin
   ledcAttachPin(Ledverde, 2);
 }
+//-------------------------------------------------------------------------------------------------
+// función para configurar la señal PMW del led azul
+//-------------------------------------------------------------------------------------------------
+void configurarlazul(void){
+  //Se establece que la frecuencia de la señal PMW sea 60Hz
+  ledcSetup(3,60,8);
+  //Adjuntamos la señal PMW a un pin
+  ledcAttachPin(Ledazul, 3);
+}
