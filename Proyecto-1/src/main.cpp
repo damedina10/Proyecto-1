@@ -163,3 +163,10 @@ void configurarlazul(void){
   //Adjuntamos la señal PMW a un pin
   ledcAttachPin(Ledazul, 3);
 }
+
+//-------------------------------------------------------------------------------------------------
+// función para la señal PMW del servo
+//-------------------------------------------------------------------------------------------------
+void configurarservo(void){
+  
+}
