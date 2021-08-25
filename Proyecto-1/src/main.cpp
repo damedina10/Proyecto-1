@@ -53,7 +53,7 @@ void configurarservo(void);
 
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
-  lectura = adc2_get_raw(ADC2_CHANNEL_8);
+  lectura = analogRead(sensor);
   medicion = lectura * 100;
 }
 
