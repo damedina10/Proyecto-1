@@ -23,6 +23,11 @@
 //Sensor
 #define sensor 25
 
+//LEDs del RGB
+#define Ledrojo 27
+#define Ledverde 14
+#define Ledazul 12
+
 
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
