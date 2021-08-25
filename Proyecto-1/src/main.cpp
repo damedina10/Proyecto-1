@@ -75,6 +75,8 @@ void setup() {
   configurarsensor();
   //Se llama a la función para configurar la señal PMW del LED rojo
   configurarlrojo();
+  //Se llama a la función para configurar la señal PMW del LED verde
+  configurarlverde();
 }
 
 //-------------------------------------------------------------------------------------------------
