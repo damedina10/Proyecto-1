@@ -41,7 +41,7 @@ int lectura = 0;
 // Prototipo de funciones
 //-------------------------------------------------------------------------------------------------
 void configurarboton(void);
-void configurarsensor(void);
+void filtrosensor(void);
 void configurarlrojo(void);
 void configurarlverde(void);
 void configurarlazul(void);
@@ -78,7 +78,7 @@ void setup() {
   //Se llama a la función para configurar el boton
   configurarboton();
   //Se llama a la función para configurar el sensor
-  configurarsensor();
+  filtrosensor();
   //Se llama a la función para configurar la señal PMW del LED rojo
   configurarlrojo();
   //Se llama a la función para configurar la señal PMW del LED verde
@@ -133,14 +133,10 @@ void configurarboton(void){
 }
 
 //-------------------------------------------------------------------------------------------------
-// función para configurar el ADC del sensor 
+// función para el filtro del sensor 
 //-------------------------------------------------------------------------------------------------
-void configurarsensor(void){
-  //Configuramos el ancho de bits del ADC
-  adc2_config_width(ADC_WIDTH_BIT_12);
-
-  //Configuramos el canal y la atenuación
-  adc2_config_channel_atten(ADC2_CHANNEL_8,ADC_ATTEN_DB_0);
+void filtrosensor(void){
+  
   
 }
 
