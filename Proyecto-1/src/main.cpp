@@ -64,7 +64,7 @@ void configurarservo(void);
 
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
-  lectura = analogRead(sensor);
+  filtrosensor();
   Serial.println(lectura);
 }
 
@@ -156,7 +156,15 @@ void configurarboton(void){
 // función para el filtro del sensor 
 //-------------------------------------------------------------------------------------------------
 void filtrosensor(void){
-  
+  lectura = analogRead(sensor);  
+   
+  // Proceso de Kalman  
+  Pact = P + varProcess;  
+  KG = Pact / (Pact + varVolt); // Ganancia de Kalman  
+  P = (1 - KG) * Pact;  
+  Xp = Xest;  Zp = Xp;  
+  Xest = Xp + KG * (lectura - Zp); // la estimación de Kalman  
+  adcFiltradoKalman = Xest;
   
 }
 
