@@ -93,7 +93,7 @@ void setup() {
 // Loop principal
 //-------------------------------------------------------------------------------------------------
 void loop() {
-  if(medicion < 371){
+  if(lectura < 37.1){
     //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
     ledcWrite(3,0); //El LED azul se mantiene apagado
@@ -102,7 +102,7 @@ void loop() {
     //El servo apunta hacia el LED verde
     ledcWrite(0,17);
   }
-  if(370 < medicion < 376){
+  if(37.0 < lectura < 37.6){
     //Cuando la temperatura sea mayor a 37° y menor o igual a 37.5°
     //se enciende el LED azul 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
@@ -112,7 +112,7 @@ void loop() {
     //El servo apunta hacia el LED azul
     ledcWrite(0,22);
   }
-  if(medicion > 375){
+  if(lectura > 37.5){
     //Cuando la temperatura sea mayor a 37.5° se enciende el LED rojo  
     ledcWrite(3,0); //El LED azul se mantiene apagado
     ledcWrite(2,0); //El LED verde se mantiene apagado
