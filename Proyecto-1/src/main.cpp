@@ -65,7 +65,7 @@ void configurarservo(void);
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
   filtrosensor();
-  Serial.println(lectura);
+  Serial.println(adcFiltradoKalman);
 }
 
 
