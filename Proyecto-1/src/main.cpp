@@ -35,7 +35,7 @@
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
 int lectura = 0;
-int medicion = 0;
+
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
@@ -54,7 +54,6 @@ void configurarservo(void);
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
   lectura = analogRead(sensor);
-  medicion = lectura * 100;
 }
 
 
