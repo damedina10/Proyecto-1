@@ -54,6 +54,7 @@ void configurarservo(void);
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
   lectura = analogRead(sensor);
+  Serial.println(lectura);
 }
 
 
