@@ -13,7 +13,7 @@
 // Librerías
 //-------------------------------------------------------------------------------------------------
 #include <Arduino.h>
-#include <driver/adc.h>
+
 //-------------------------------------------------------------------------------------------------
 // Definición de pines
 //-------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
 #define B1 1
 
 //Sensor
-#define sensor 25
+#define sensor 34
 
 //LEDs del RGB
 #define Ledrojo 27
@@ -62,11 +62,12 @@ void IRAM_ATTR ISRboton(){
 // Configuración del sistema
 //-------------------------------------------------------------------------------------------------
 void setup() {
+  Serial.begin(115200);
   //Botón
   pinMode(B1,INPUT_PULLUP);
 
   //Sensor
-  pinMode(sensor,INPUT_PULLUP);
+  //pinMode(sensor,INPUT_PULLUP);
 
   //LED RGB
   pinMode(Ledrojo, OUTPUT);
@@ -78,6 +79,7 @@ void setup() {
 
   //Se llama a la función para configurar el boton
   configurarboton();
+  
   //Se llama a la función para configurar el sensor
   filtrosensor();
   //Se llama a la función para configurar la señal PMW del LED rojo
@@ -88,12 +90,17 @@ void setup() {
   configurarlazul();
   //Se llama a la función para configurar la señal PMW del servo
   configurarservo();
+  
 }
 
 //-------------------------------------------------------------------------------------------------
 // Loop principal
 //-------------------------------------------------------------------------------------------------
 void loop() {
+  lectura = analogRead(sensor);
+  delay (100);
+  Serial.println(lectura);
+  
   if(lectura < 37.1){
     //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
@@ -122,6 +129,7 @@ void loop() {
     //El servo apunta hacia el LED rojo
     ledcWrite(0,27);
   }
+  
 }
 
 //-------------------------------------------------------------------------------------------------
