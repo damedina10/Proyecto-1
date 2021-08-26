@@ -34,8 +34,19 @@
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
-int lectura = 0;
+//Variables para la lectura del sensor
+float lectura = 0;
 
+//Variables para el filtro de Kalman
+float varVolt = 1.9615;
+float varProcess = 1e-9;
+float Pact = 0.0;
+float KG = 0.0;
+float P = 1.0;
+float Xp = 0.0;
+float Zp = 0.0;
+float Xest = 0.0;
+float adcFiltradoKalman = 0.0;
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
