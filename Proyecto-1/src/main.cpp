@@ -35,7 +35,7 @@
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
 //Variables para la lectura del sensor
-float lectura = 0;
+int lectura = 0;
 
 //Variables para el filtro de Kalman
 float varVolt = 0.9946;
