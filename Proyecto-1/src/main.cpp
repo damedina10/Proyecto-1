@@ -41,7 +41,7 @@ float temperatura = 0;
 
 //Variables para el filtro EMA
 double adcFiltradoEMA = 0; // S(0) = Y(0)
-double alpha = 0.09;       // Factor de suavizado (0-1)
+double alpha = 0.05;       // Factor de suavizado (0-1)
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
@@ -82,9 +82,6 @@ void setup() {
 
   //Se llama a la función para configurar el boton
   configurarboton();
-  
-  //Se llama a la función para configurar el sensor
-  //filtrosensor();
   //Se llama a la función para configurar la señal PMW del LED rojo
   configurarlrojo();
   //Se llama a la función para configurar la señal PMW del LED verde
@@ -145,12 +142,13 @@ void configurarboton(void){
 // función para el filtro del sensor 
 //-------------------------------------------------------------------------------------------------
 void filtrosensor(void){
+  delay(3000);
   lectura = analogRead(sensor);
   adcFiltradoEMA = (alpha * lectura) + ((1.0 - alpha) * adcFiltradoEMA);
   voltaje = adcFiltradoEMA*3300.0/4095.0;
   temperatura = voltaje/10.0;
   Serial.println(temperatura);
-  delay(1000);
+  delay(3000);
   
 }
 
