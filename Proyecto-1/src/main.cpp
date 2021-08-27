@@ -34,10 +34,12 @@
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
+
 //Variables para la lectura del sensor
 int lectura = 0;
-float voltaje = 0;
-float temperatura = 0;
+float voltaje = 0.0;
+float temperatura = 0.0;
+float temp = 0.0;
 
 //Variables para el filtro EMA
 double adcFiltradoEMA = 0; // S(0) = Y(0)
@@ -97,7 +99,7 @@ void setup() {
 // Loop principal
 //-------------------------------------------------------------------------------------------------
 void loop() {
-
+  //temp = 36.5;
   if(temperatura <= 37.0){
     //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
@@ -107,6 +109,8 @@ void loop() {
     //El servo apunta hacia el LED verde
     ledcWrite(0,17);
   }
+  //delay(3000);
+  //temp = 37.3;
   if(37.1 <= temperatura && temperatura <= 37.5){
     //Cuando la temperatura sea mayor a 37° y menor o igual a 37.5°
     //se enciende el LED azul 
@@ -117,6 +121,8 @@ void loop() {
     //El servo apunta hacia el LED azul
     ledcWrite(0,22);
   }
+  //temp = 38.0;
+  //delay(3000);
   if(temperatura > 37.5){
     //Cuando la temperatura sea mayor a 37.5° se enciende el LED rojo  
     ledcWrite(3,0); //El LED azul se mantiene apagado
@@ -126,6 +132,7 @@ void loop() {
     //El servo apunta hacia el LED rojo
     ledcWrite(0,27);
   }
+  delay(3000);
   
 }
 
@@ -142,7 +149,6 @@ void configurarboton(void){
 // función para el filtro del sensor 
 //-------------------------------------------------------------------------------------------------
 void filtrosensor(void){
-  delay(3000);
   lectura = analogRead(sensor);
   adcFiltradoEMA = (alpha * lectura) + ((1.0 - alpha) * adcFiltradoEMA);
   voltaje = adcFiltradoEMA*3300.0/4095.0;
