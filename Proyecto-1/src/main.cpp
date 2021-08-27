@@ -36,17 +36,12 @@
 //-------------------------------------------------------------------------------------------------
 //Variables para la lectura del sensor
 int lectura = 0;
+float voltaje = 0;
+float temperatura = 0;
 
-//Variables para el filtro de Kalman
-float varVolt = 0.9946;
-float varProcess = 1e-9;
-float Pact = 0.0;
-float KG = 0.0;
-float P = 1.0;
-float Xp = 0.0;
-float Zp = 0.0;
-float Xest = 0.0;
-float adcFiltradoKalman = 0.0;
+//Variables para el filtro EMA
+double adcFiltradoEMA = 0; // S(0) = Y(0)
+double alpha = 0.09;       // Factor de suavizado (0-1)
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
@@ -64,17 +59,7 @@ void configurarservo(void);
 
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
-  float varVolt = 1.9615;
-  float varProcess = 1e-9;
-  float Pact = 0.0;
-  float KG = 0.0;
-  float P = 1.0;
-  float Xp = 0.0;
-  float Zp = 0.0;
-  float Xest = 0.0;
-  float adcFiltradoKalman = 0.0;
   filtrosensor();
-  Serial.println(adcFiltradoKalman);
 }
 
 
@@ -86,13 +71,11 @@ void setup() {
   //Botón
   pinMode(B1,INPUT_PULLUP);
 
-  //Sensor
-  //pinMode(sensor,INPUT_PULLUP);
-
   //LED RGB
   pinMode(Ledrojo, OUTPUT);
   pinMode(Ledverde, OUTPUT);
   pinMode(Ledazul, OUTPUT);
+
 
   //Servo
   pinMode(servo,OUTPUT);
@@ -117,8 +100,8 @@ void setup() {
 // Loop principal
 //-------------------------------------------------------------------------------------------------
 void loop() {
-  
-  if(lectura < 37.1){
+
+  if(temperatura <= 37.0){
     //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
     ledcWrite(3,0); //El LED azul se mantiene apagado
@@ -127,7 +110,7 @@ void loop() {
     //El servo apunta hacia el LED verde
     ledcWrite(0,17);
   }
-  if(37.0 < lectura < 37.6){
+  if(37.1 <= temperatura && temperatura <= 37.5){
     //Cuando la temperatura sea mayor a 37° y menor o igual a 37.5°
     //se enciende el LED azul 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
@@ -137,7 +120,7 @@ void loop() {
     //El servo apunta hacia el LED azul
     ledcWrite(0,22);
   }
-  if(lectura > 37.5){
+  if(temperatura > 37.5){
     //Cuando la temperatura sea mayor a 37.5° se enciende el LED rojo  
     ledcWrite(3,0); //El LED azul se mantiene apagado
     ledcWrite(2,0); //El LED verde se mantiene apagado
@@ -162,15 +145,12 @@ void configurarboton(void){
 // función para el filtro del sensor 
 //-------------------------------------------------------------------------------------------------
 void filtrosensor(void){
-  lectura = analogRead(sensor);  
-   
-  // Proceso de Kalman  
-  Pact = P + varProcess;  
-  KG = Pact / (Pact + varVolt); // Ganancia de Kalman  
-  P = (1 - KG) * Pact;  
-  Xp = Xest;  Zp = Xp;  
-  Xest = Xp + KG * (lectura - Zp); // la estimación de Kalman  
-  adcFiltradoKalman = Xest;
+  lectura = analogRead(sensor);
+  adcFiltradoEMA = (alpha * lectura) + ((1.0 - alpha) * adcFiltradoEMA);
+  voltaje = adcFiltradoEMA*3300.0/4095.0;
+  temperatura = voltaje/10.0;
+  Serial.println(temperatura);
+  delay(1000);
   
 }
 
