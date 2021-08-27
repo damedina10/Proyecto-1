@@ -38,7 +38,7 @@
 float lectura = 0;
 
 //Variables para el filtro de Kalman
-float varVolt = 1.9615;
+float varVolt = 0.9946;
 float varProcess = 1e-9;
 float Pact = 0.0;
 float KG = 0.0;
@@ -64,6 +64,15 @@ void configurarservo(void);
 
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
+  float varVolt = 1.9615;
+  float varProcess = 1e-9;
+  float Pact = 0.0;
+  float KG = 0.0;
+  float P = 1.0;
+  float Xp = 0.0;
+  float Zp = 0.0;
+  float Xest = 0.0;
+  float adcFiltradoKalman = 0.0;
   filtrosensor();
   Serial.println(adcFiltradoKalman);
 }
@@ -92,7 +101,7 @@ void setup() {
   configurarboton();
   
   //Se llama a la función para configurar el sensor
-  filtrosensor();
+  //filtrosensor();
   //Se llama a la función para configurar la señal PMW del LED rojo
   configurarlrojo();
   //Se llama a la función para configurar la señal PMW del LED verde
@@ -108,9 +117,6 @@ void setup() {
 // Loop principal
 //-------------------------------------------------------------------------------------------------
 void loop() {
-  lectura = analogRead(sensor);
-  delay (100);
-  Serial.println(lectura);
   
   if(lectura < 37.1){
     //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
