@@ -18,8 +18,8 @@
 // Configuración de Adafruit IO
 //-------------------------------------------------------------------------------------------------
 //KEY
-#define IO_USERNAME "your_username"
-#define IO_KEY "your_key"
+#define IO_USERNAME "diegomed10"
+#define IO_KEY "aio_oZqU78UKl2Z6CcIOVMDYEt777mWZ"
 
 // WIFI
 #define WIFI_SSID "your_ssid"
