@@ -22,8 +22,8 @@
 #define IO_KEY "aio_oZqU78UKl2Z6CcIOVMDYEt777mWZ"
 
 // WIFI
-#define WIFI_SSID "your_ssid"
-#define WIFI_PASS "your_pass"
+#define WIFI_SSID "TIGO-656A-5G"
+#define WIFI_PASS "4D9697500333"
 
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 //-------------------------------------------------------------------------------------------------
