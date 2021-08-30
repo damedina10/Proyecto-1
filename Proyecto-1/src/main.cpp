@@ -59,7 +59,7 @@ double alpha = 0.05;       // Factor de suavizado (0-1)
 
 //Adafruit IO
 int count = 0;
-AdafruitIO_Feed *temperatura = io.feed("temperatura");
+AdafruitIO_Feed *temperaturaFeed = io.feed("Temperatura");
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
@@ -168,11 +168,8 @@ void loop() {
 
   // save count to the 'counter' feed on Adafruit IO
   Serial.print("sending -> ");
-  Serial.println(count);
-  counter->save(count);
-
-  // increment the count by 1
-  count++;
+  Serial.println(temperatura);
+  counter->save(temperatura);
 
   // Adafruit IO is rate limited for publishing, so a delay is required in
   // between feed->save events. In this example, we will wait three seconds
