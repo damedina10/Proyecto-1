@@ -57,6 +57,10 @@ float temp = 0.0;
 double adcFiltradoEMA = 0; // S(0) = Y(0)
 double alpha = 0.05;       // Factor de suavizado (0-1)
 
+//Adafruit IO
+int count = 0;
+AdafruitIO_Feed *temperatura = io.feed("temperatura");
+
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
 //-------------------------------------------------------------------------------------------------
@@ -105,6 +109,19 @@ void setup() {
   //Se llama a la función para configurar la señal PMW del servo
   configurarservo();
   
+  //Adafruit IO
+  while(! Serial);
+
+  Serial.print("Connecting to Adafruit IO");
+
+  // connect to io.adafruit.com
+  io.connect();
+
+  // wait for a connection
+  while(io.status() < AIO_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -146,6 +163,21 @@ void loop() {
   }
   delay(3000);
   
+  //Segmento de Adafruit IO
+  io.run();
+
+  // save count to the 'counter' feed on Adafruit IO
+  Serial.print("sending -> ");
+  Serial.println(count);
+  counter->save(count);
+
+  // increment the count by 1
+  count++;
+
+  // Adafruit IO is rate limited for publishing, so a delay is required in
+  // between feed->save events. In this example, we will wait three seconds
+  // (1000 milliseconds == 1 second) during each loop.
+  delay(3000);
 }
 
 //-------------------------------------------------------------------------------------------------
