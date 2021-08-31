@@ -14,6 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <Arduino.h>
 #include "AdafruitIO_WiFi.h"
+#include "Display7.h"
 //-------------------------------------------------------------------------------------------------
 // Configuración de Adafruit IO
 //-------------------------------------------------------------------------------------------------
@@ -42,6 +43,21 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 
 //Servo
 #define servo 5
+
+//Displays de 7 segmentos
+#define A 32
+#define B 33
+#define C 25
+#define D 26
+#define E 17
+#define F 16
+#define G 4
+#define DP 2
+
+//Transistores para los displays
+#define display1 3
+#define display2 21
+#define display3 19 
 
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
