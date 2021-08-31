@@ -138,6 +138,9 @@ void setup() {
     Serial.print(".");
     delay(500);
   }
+
+  //Configuración de los displays de 7 segmentos
+  configurardisplay(A, B, C, D, E, F, G, DP);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -185,7 +188,7 @@ void loop() {
   // save count to the 'counter' feed on Adafruit IO
   Serial.print("sending -> ");
   Serial.println(temperatura);
-  counter->save(temperatura);
+  temperaturaFeed->save(temperatura);
 
   // Adafruit IO is rate limited for publishing, so a delay is required in
   // between feed->save events. In this example, we will wait three seconds
