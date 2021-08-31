@@ -47,9 +47,88 @@ void desplegardigito(uint8_t digito){
         digitalWrite(pinE, 0);
         digitalWrite(pinF, 0);
         digitalWrite(pinG, 1);
-        digitalWrite(pinDP, 1);
         break;
-
+    case 1:
+        digitalWrite(pinA, 1);
+        digitalWrite(pinB, 0);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 1);
+        digitalWrite(pinE, 1);
+        digitalWrite(pinF, 1);
+        digitalWrite(pinG, 1);
+        break;
+    case 2:
+        digitalWrite(pinA, 0);
+        digitalWrite(pinB, 0);
+        digitalWrite(pinC, 1);
+        digitalWrite(pinD, 0);
+        digitalWrite(pinE, 0);
+        digitalWrite(pinF, 1);
+        digitalWrite(pinG, 0);
+        break;
+    case 3:
+        digitalWrite(pinA, 0);
+        digitalWrite(pinB, 0);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 0);
+        digitalWrite(pinE, 1);
+        digitalWrite(pinF, 1);
+        digitalWrite(pinG, 0);
+        break;
+    case 4:
+        digitalWrite(pinA, 1);
+        digitalWrite(pinB, 0);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 1);
+        digitalWrite(pinE, 1);
+        digitalWrite(pinF, 0);
+        digitalWrite(pinG, 0);
+        break;
+    case 5:
+        digitalWrite(pinA, 0);
+        digitalWrite(pinB, 1);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 0);
+        digitalWrite(pinE, 1);
+        digitalWrite(pinF, 0);
+        digitalWrite(pinG, 0);
+        break;
+    case 6:
+        digitalWrite(pinA, 0);
+        digitalWrite(pinB, 1);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 0);
+        digitalWrite(pinE, 0);
+        digitalWrite(pinF, 0);
+        digitalWrite(pinG, 0);
+        break;
+    case 7:
+        digitalWrite(pinA, 0);
+        digitalWrite(pinB, 0);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 1);
+        digitalWrite(pinE, 1);
+        digitalWrite(pinF, 1);
+        digitalWrite(pinG, 1);
+        break;
+    case 8:
+        digitalWrite(pinA, 0);
+        digitalWrite(pinB, 0);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 0);
+        digitalWrite(pinE, 0);
+        digitalWrite(pinF, 0);
+        digitalWrite(pinG, 0);
+        break;
+    case 9:
+        digitalWrite(pinA, 0);
+        digitalWrite(pinB, 0);
+        digitalWrite(pinC, 0);
+        digitalWrite(pinD, 0);
+        digitalWrite(pinE, 1);
+        digitalWrite(pinF, 0);
+        digitalWrite(pinG, 0);
+        break;
     default:
         break;
     }
