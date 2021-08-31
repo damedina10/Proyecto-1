@@ -6,6 +6,15 @@ uint8_t pinA, pinB, pinC, pinD, pinE, pinF, pinG, pinDP;
 
 //función para configurar Display de 7 segmentos
 void configurardisplay(uint8_t A, uint8_t B,uint8_t C,uint8_t D,uint8_t E,uint8_t F,uint8_t G,uint8_t DP){
+    pinA = A;
+    pinB = B;
+    pinC = C;
+    pinD = D;
+    pinE = E;
+    pinF = F;
+    pinG = G;
+    pinDP = DP;
+
     //Establecemos que los pines son salidas
     pinMode(A,OUTPUT);
     pinMode(B,OUTPUT);
@@ -35,9 +44,9 @@ void desplegardigito(uint8_t digito){
 //Función para desplegar el punto decimal en el segundo display 
 void desplegarpunto(boolean punto){
     if(punto == 1){
-        digitalWrite(dP,0);
+        digitalWrite(pinDP,0);
     }
     else{
-        digitalWrite(dP,1);
+        digitalWrite(pinDP,1);
     }
 }
