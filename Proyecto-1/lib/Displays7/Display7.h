@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 
+//Variables globales
+uint8_t pinA, pinB, pinC, pinD, pinE, pinF, pinG, pinDP;
+
 //función para configurar Display de 7 segmentos
 void configurardisplay(uint8_t A, uint8_t B,uint8_t C,uint8_t D,uint8_t E,uint8_t F,uint8_t G,uint8_t DP);
 
