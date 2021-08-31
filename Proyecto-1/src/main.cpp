@@ -141,6 +141,15 @@ void setup() {
 
   //Configuración de los displays de 7 segmentos
   configurardisplay(A, B, C, D, E, F, G, DP);
+
+  //Transistores para los displays
+  pinMode(display1,OUTPUT);
+  pinMode(display2,OUTPUT);
+  pinMode(display3,OUTPUT);
+
+  digitalWrite(display1,0);
+  digitalWrite(display2,0);
+  digitalWrite(display3,0);
 }
 
 //-------------------------------------------------------------------------------------------------
