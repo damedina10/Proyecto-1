@@ -30,5 +30,10 @@ void desplegardigito(uint8_t digito){
 
 //Función para desplegar el punto decimal en el segundo display 
 void desplegarpunto(boolean punto){
-
+    if(punto == 1){
+        digitalWrite(dP,0);
+    }
+    else{
+        digitalWrite(dP,1);
+    }
 }
