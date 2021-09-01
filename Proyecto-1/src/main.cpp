@@ -213,6 +213,9 @@ void loop() {
 
   //Obtención de las unidades
   int unidades = temperatura - (decenas * 10);
+
+  //Obtención de los decimales
+  int decimal = ((temperatura*10)-(decenas*100)-(unidades*10));
   
   //Segmento de Adafruit IO
   io.run();
