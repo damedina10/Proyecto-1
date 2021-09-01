@@ -266,3 +266,23 @@ void configurarservo(void){
   //Adjuntamos la señal PMW a un pin
   ledcAttachPin(servo, 0);
 }
+
+//-------------------------------------------------------------------------------------------------
+// Función para configurar timer
+//-------------------------------------------------------------------------------------------------
+void configurartimer(void){
+  //Fosc/prescaler = 80,000,000/80 = 1,000,000
+  //Tosc = 1/Fosc = 1 us
+  //Seleccionamos el timer
+  timer = timerBegin(0, prescaler, true);
+  
+  //Asignar el handler de la interrupcion
+  timerAttachInterrupt(timer, &ISRTimer, true);
+
+  //Programar Alarma
+  //Frecuencia = 5,000
+  timerAlarmWrite(timer,5000,true);
+
+  //Iniciamos la alarma
+   timerAlarmEnable(timer); 
+}
