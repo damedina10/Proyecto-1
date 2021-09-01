@@ -27,6 +27,7 @@
 #define WIFI_PASS "4D9697500333"
 
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+
 //-------------------------------------------------------------------------------------------------
 // Definición de pines
 //-------------------------------------------------------------------------------------------------
@@ -86,6 +87,7 @@ void configurarlrojo(void);
 void configurarlverde(void);
 void configurarlazul(void);
 void configurarservo(void);
+void configurartimer(void);
 
 //-------------------------------------------------------------------------------------------------
 // ISR

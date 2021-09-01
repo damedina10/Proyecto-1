@@ -14,4 +14,5 @@ void desplegardigito(uint8_t digito);
 
 //Función para desplegar el punto decimal en el segundo display 
 void desplegarpunto(boolean punto);
+
 #endif // __DISPLAY7_H__
