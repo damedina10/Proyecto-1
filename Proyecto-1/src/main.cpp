@@ -81,6 +81,9 @@ double alpha = 0.05;       // Factor de suavizado (0-1)
 int count = 0;
 AdafruitIO_Feed *temperaturaFeed = io.feed("Temperatura");
 
+//Instanciamos el timer
+hw_timer_t * timer = NULL;
+
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
 //-------------------------------------------------------------------------------------------------
