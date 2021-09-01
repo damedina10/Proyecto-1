@@ -211,7 +211,8 @@ void loop() {
   //Obtención de las decenas
   int decenas = temperatura / 10;
 
-  
+  //Obtención de las unidades
+  int unidades = temperatura - (decenas * 10);
   
   //Segmento de Adafruit IO
   io.run();
