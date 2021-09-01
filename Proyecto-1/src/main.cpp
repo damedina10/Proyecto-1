@@ -238,6 +238,16 @@ void loop() {
     //Llamamos a la función del punto para decirle que queremos el punto
     desplegarpunto(1);
   }
+   if(contadorT == 2){
+    //Se enciende el display de los decimales
+    digitalWrite(display1,0);
+    digitalWrite(display2,0);
+    digitalWrite(display3,1);
+    //Llamamos a la función desplegardigito para que muestre el decimal
+    desplegardigito(decimal);
+    //Llamamos a la función del punto para decirle que no queremos el punto
+    desplegarpunto(0);
+  }
   
   //Segmento de Adafruit IO
   io.run();
