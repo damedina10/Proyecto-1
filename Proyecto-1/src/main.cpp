@@ -60,6 +60,9 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 #define display2 21
 #define display3 19 
 
+//Timer 
+#define prescaler 80
+
 //-------------------------------------------------------------------------------------------------
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
