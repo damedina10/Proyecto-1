@@ -228,6 +228,16 @@ void loop() {
     //Llamamos a la función del punto para decirle que no queremos el punto
     desplegarpunto(0);
   }
+  if(contadorT == 1){
+    //Se enciende el display de las unidades
+    digitalWrite(display1,0);
+    digitalWrite(display2,1);
+    digitalWrite(display3,0);
+    //Llamamos a la función desplegardigito para que muestre las unidades
+    desplegardigito(unidades);
+    //Llamamos a la función del punto para decirle que queremos el punto
+    desplegarpunto(1);
+  }
   
   //Segmento de Adafruit IO
   io.run();
