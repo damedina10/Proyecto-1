@@ -216,6 +216,18 @@ void loop() {
 
   //Obtención de los decimales
   int decimal = ((temperatura*10)-(decenas*100)-(unidades*10));
+
+  //Despliegue de la temperatura en los displays de 7 segmentos
+  if(contadorT == 0){
+    //Se enciende el display de las decenas
+    digitalWrite(display1,1);
+    digitalWrite(display2,0);
+    digitalWrite(display3,0);
+    //Llamamos a la función desplegardigito para que muestre las decenas
+    desplegardigito(decenas);
+    //Llamamos a la función del punto para decirle que no queremos el punto
+    desplegarpunto(0);
+  }
   
   //Segmento de Adafruit IO
   io.run();
