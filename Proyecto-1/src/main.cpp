@@ -46,14 +46,14 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 #define servo 5
 
 //Displays de 7 segmentos
-#define A 32
-#define B 33
-#define C 25
-#define D 26
-#define E 17
-#define F 16
-#define G 4
-#define DP 2
+#define sA 32
+#define sB 33
+#define sC 25
+#define sD 26
+#define sE 17
+#define sF 16
+#define sG 4
+#define sDP 2
 
 //Transistores para los displays
 #define display1 3
@@ -67,6 +67,8 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 // Variables Locales
 //-------------------------------------------------------------------------------------------------
 
+//Variables para el botón
+int estadoBoton = 0;
 //Variables para la lectura del sensor
 int lectura = 0;
 float voltaje = 0.0;
@@ -103,7 +105,7 @@ void configurartimer(void);
 
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
-  filtrosensor();
+  estadoBoton = 1;
 }
 
 //Interrupción del temporizador
@@ -158,7 +160,7 @@ void setup() {
   }
 
   //Configuración de los displays de 7 segmentos
-  configurardisplay(A, B, C, D, E, F, G, DP);
+  configurardisplay(sA, sB, sC, sD, sE, sF, sG, sDP);
 
   //Transistores para los displays
   pinMode(display1,OUTPUT);
@@ -268,7 +270,7 @@ void loop() {
 //-------------------------------------------------------------------------------------------------
 void configurarboton(void){
   //Adjuntamos la interrupción a un pin
-  attachInterrupt(B1,ISRboton, HIGH);
+  attachInterrupt(B1,ISRboton, RISING);
   
 }
 
