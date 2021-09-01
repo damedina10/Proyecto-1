@@ -186,7 +186,7 @@ void loop() {
   }
   //delay(3000);
   //temp = 37.3;
-  if(37.1 <= temperatura && temperatura <= 37.5){
+  else if(37.1 <= temperatura && temperatura <= 37.5){
     //Cuando la temperatura sea mayor a 37° y menor o igual a 37.5°
     //se enciende el LED azul 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
@@ -198,7 +198,7 @@ void loop() {
   }
   //temp = 38.0;
   //delay(3000);
-  if(temperatura > 37.5){
+  else if(temperatura > 37.5){
     //Cuando la temperatura sea mayor a 37.5° se enciende el LED rojo  
     ledcWrite(3,0); //El LED azul se mantiene apagado
     ledcWrite(2,0); //El LED verde se mantiene apagado
@@ -207,7 +207,11 @@ void loop() {
     //El servo apunta hacia el LED rojo
     ledcWrite(0,27);
   }
-  delay(3000);
+
+  //Obtención de las decenas
+  int decenas = temperatura / 10;
+
+  
   
   //Segmento de Adafruit IO
   io.run();
