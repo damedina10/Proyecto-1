@@ -83,6 +83,8 @@ AdafruitIO_Feed *temperaturaFeed = io.feed("Temperatura");
 
 //Instanciamos el timer
 hw_timer_t * timer = NULL;
+//Contador del timer
+int contadorT = 0;
 
 //-------------------------------------------------------------------------------------------------
 // Prototipo de funciones
@@ -102,6 +104,14 @@ void configurartimer(void);
 //Interrupción del botón que permite la medición de temperatura
 void IRAM_ATTR ISRboton(){
   filtrosensor();
+}
+
+//Interrupción del temporizador
+void IRAM_ATTR ISRTimer(){
+  contadorT ++; 
+  if(contadorT > 2){
+    contadorT = 0;
+  } 
 }
 
 
