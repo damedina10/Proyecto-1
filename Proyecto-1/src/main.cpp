@@ -13,8 +13,9 @@
 // Librerías
 //-------------------------------------------------------------------------------------------------
 #include <Arduino.h>
-#include "AdafruitIO_WiFi.h"
+//#include "AdafruitIO_WiFi.h"
 #include "Display7.h"
+/*
 //-------------------------------------------------------------------------------------------------
 // Configuración de Adafruit IO
 //-------------------------------------------------------------------------------------------------
@@ -27,12 +28,12 @@
 #define WIFI_PASS "4D9697500333"
 
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
-
+*/
 //-------------------------------------------------------------------------------------------------
 // Definición de pines
 //-------------------------------------------------------------------------------------------------
 //Botón
-#define B1 1
+#define B1 15
 
 //Sensor
 #define sensor 34
@@ -78,11 +79,11 @@ float temp = 0.0;
 //Variables para el filtro EMA
 double adcFiltradoEMA = 0; // S(0) = Y(0)
 double alpha = 0.05;       // Factor de suavizado (0-1)
-
+/*
 //Adafruit IO
 int count = 0;
 AdafruitIO_Feed *temperaturaFeed = io.feed("Temperatura");
-
+*/
 //Instanciamos el timer
 hw_timer_t * timer = NULL;
 //Contador del timer
@@ -144,7 +145,7 @@ void setup() {
   configurarlazul();
   //Se llama a la función para configurar la señal PMW del servo
   configurarservo();
-  
+  /*
   //Adafruit IO
   while(! Serial);
 
@@ -158,7 +159,7 @@ void setup() {
     Serial.print(".");
     delay(500);
   }
-
+*/
   //Configuración de los displays de 7 segmentos
   configurardisplay(sA, sB, sC, sD, sE, sF, sG, sDP);
 
@@ -176,7 +177,13 @@ void setup() {
 // Loop principal
 //-------------------------------------------------------------------------------------------------
 void loop() {
-  //temp = 36.5;
+  if(estadoBoton == 1){
+    estadoBoton = 0;
+    lectura = analogReadMilliVolts(sensor);
+    adcFiltradoEMA = (alpha * lectura) + ((1.0 - alpha) * adcFiltradoEMA);
+    temperatura = adcFiltradoEMA/10.0;
+    Serial.println(temperatura);
+  }
   if(temperatura <= 37.0){
     //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
     ledcWrite(1,0); //El LED rojo se mantiene apagado
@@ -250,7 +257,7 @@ void loop() {
     //Llamamos a la función del punto para decirle que no queremos el punto
     desplegarpunto(0);
   }
-  
+  /*
   //Segmento de Adafruit IO
   io.run();
 
@@ -262,7 +269,7 @@ void loop() {
   // Adafruit IO is rate limited for publishing, so a delay is required in
   // between feed->save events. In this example, we will wait three seconds
   // (1000 milliseconds == 1 second) during each loop.
-  delay(3000);
+  delay(3000);*/
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -278,12 +285,10 @@ void configurarboton(void){
 // función para el filtro del sensor 
 //-------------------------------------------------------------------------------------------------
 void filtrosensor(void){
-  lectura = analogRead(sensor);
+  lectura = analogReadMilliVolts(sensor);
   adcFiltradoEMA = (alpha * lectura) + ((1.0 - alpha) * adcFiltradoEMA);
-  voltaje = adcFiltradoEMA*3300.0/4095.0;
-  temperatura = voltaje/10.0;
+  temperatura = adcFiltradoEMA/10.0;
   Serial.println(temperatura);
-  delay(3000);
   
 }
 
