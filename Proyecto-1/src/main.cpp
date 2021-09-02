@@ -183,49 +183,50 @@ void loop() {
     adcFiltradoEMA = (alpha * lectura) + ((1.0 - alpha) * adcFiltradoEMA);
     temperatura = adcFiltradoEMA/10.0;
     Serial.println(temperatura);
-  }
-  if(temperatura <= 37.0){
-    //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
-    ledcWrite(1,0); //El LED rojo se mantiene apagado
-    ledcWrite(3,0); //El LED azul se mantiene apagado
-    //Dutycycle = 75
-    ledcWrite(2,191);
-    //El servo apunta hacia el LED verde
-    ledcWrite(0,17);
-  }
-  //delay(3000);
-  //temp = 37.3;
-  else if(37.1 <= temperatura && temperatura <= 37.5){
-    //Cuando la temperatura sea mayor a 37° y menor o igual a 37.5°
-    //se enciende el LED azul 
-    ledcWrite(1,0); //El LED rojo se mantiene apagado
-    ledcWrite(2,0); //El LED verde se mantiene apagado
-    //Dutycycle = 75
-    ledcWrite(3,191);
-    //El servo apunta hacia el LED azul
-    ledcWrite(0,22);
-  }
-  //temp = 38.0;
-  //delay(3000);
-  else if(temperatura > 37.5){
-    //Cuando la temperatura sea mayor a 37.5° se enciende el LED rojo  
-    ledcWrite(3,0); //El LED azul se mantiene apagado
-    ledcWrite(2,0); //El LED verde se mantiene apagado
-    //Dutycycle = 75
-    ledcWrite(1,191);
-    //El servo apunta hacia el LED rojo
-    ledcWrite(0,27);
+
+    //Obtención de las decenas
+    int decenas = temperatura / 10;
+
+    //Obtención de las unidades
+    int unidades = temperatura - (decenas * 10);
+
+    //Obtención de los decimales
+    int decimal = ((temperatura*10)-(decenas*100)-(unidades*10));
+
+    //Semáforo de temperatura
+    if(temperatura <= 20.0){
+      //Cuando la temperatura sea menor o igual a 37° se enciende el LED verde 
+      ledcWrite(1,0); //El LED rojo se mantiene apagado
+      ledcWrite(3,0); //El LED azul se mantiene apagado
+      //Dutycycle = 75
+      ledcWrite(2,191);
+      //El servo apunta hacia el LED verde
+      ledcWrite(0,17);
+    }
+    
+    if(20 <= temperatura && temperatura <= 40){
+      //Cuando la temperatura sea mayor a 37° y menor o igual a 37.5°
+      //se enciende el LED azul 
+      ledcWrite(1,0); //El LED rojo se mantiene apagado
+      ledcWrite(2,0); //El LED verde se mantiene apagado
+      //Dutycycle = 75
+      ledcWrite(3,191);
+      //El servo apunta hacia el LED azul
+      ledcWrite(0,22);
+    }
+    
+    if(temperatura > 40){
+      //Cuando la temperatura sea mayor a 37.5° se enciende el LED rojo  
+      ledcWrite(3,0); //El LED azul se mantiene apagado
+      ledcWrite(2,0); //El LED verde se mantiene apagado
+      //Dutycycle = 75
+      ledcWrite(1,191);
+      //El servo apunta hacia el LED rojo
+      ledcWrite(0,27);
+    }
   }
 
-  //Obtención de las decenas
-  int decenas = temperatura / 10;
-
-  //Obtención de las unidades
-  int unidades = temperatura - (decenas * 10);
-
-  //Obtención de los decimales
-  int decimal = ((temperatura*10)-(decenas*100)-(unidades*10));
-
+/*
   //Despliegue de la temperatura en los displays de 7 segmentos
   if(contadorT == 0){
     //Se enciende el display de las decenas
@@ -257,7 +258,7 @@ void loop() {
     //Llamamos a la función del punto para decirle que no queremos el punto
     desplegarpunto(0);
   }
-  /*
+  
   //Segmento de Adafruit IO
   io.run();
 
