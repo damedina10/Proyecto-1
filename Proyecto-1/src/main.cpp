@@ -13,22 +13,22 @@
 // Librerías
 //-------------------------------------------------------------------------------------------------
 #include <Arduino.h>
-//#include "AdafruitIO_WiFi.h"
+#include "AdafruitIO_WiFi.h"
 #include "Display7.h"
-/*
+
 //-------------------------------------------------------------------------------------------------
 // Configuración de Adafruit IO
 //-------------------------------------------------------------------------------------------------
 //KEY
 #define IO_USERNAME "diegomed10"
-#define IO_KEY "aio_oZqU78UKl2Z6CcIOVMDYEt777mWZ"
+#define IO_KEY "aio_yHBt60BiPm4zFPanX5d01lHzwO4J"
 
 // WIFI
 #define WIFI_SSID "TIGO-656A-5G"
 #define WIFI_PASS "4D9697500333"
 
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
-*/
+
 //-------------------------------------------------------------------------------------------------
 // Definición de pines
 //-------------------------------------------------------------------------------------------------
@@ -79,11 +79,11 @@ float temp = 0.0;
 //Variables para el filtro EMA
 double adcFiltradoEMA = 0; // S(0) = Y(0)
 double alpha = 0.05;       // Factor de suavizado (0-1)
-/*
+
 //Adafruit IO
 int count = 0;
 AdafruitIO_Feed *temperaturaFeed = io.feed("Temperatura");
-*/
+
 //Instanciamos el timer
 hw_timer_t * timer = NULL;
 //Contador del timer
@@ -152,7 +152,7 @@ void setup() {
   configurarservo();
   //Se llama a la función para configurar el timer
   configurartimer();
-  /*
+  
   //Adafruit IO
   while(! Serial);
 
@@ -166,7 +166,10 @@ void setup() {
     Serial.print(".");
     delay(500);
   }
-*/
+  // we are connected
+  Serial.println();
+  Serial.println(io.statusText());
+
   //Configuración de los displays de 7 segmentos
   configurardisplay(sA, sB, sC, sD, sE, sF, sG, sDP);
 
@@ -232,7 +235,15 @@ void loop() {
       ledcWrite(0,27);
     }
 
+    //Segmento de Adafruit IO
+    io.run();
+
+    // save count to the 'counter' feed on Adafruit IO
+    Serial.print("sending -> ");
+    Serial.println(temperatura);
+    temperaturaFeed->save(temperatura);
   }
+
   //Despliegue de la temperatura en los displays de 7 segmentos
   if(contadorT == 0){
     //Se enciende el display de las decenas
@@ -268,20 +279,6 @@ void loop() {
     delay(5);
   }
 
-  
-  /*
-  //Segmento de Adafruit IO
-  io.run();
-
-  // save count to the 'counter' feed on Adafruit IO
-  Serial.print("sending -> ");
-  Serial.println(temperatura);
-  temperaturaFeed->save(temperatura);
-
-  // Adafruit IO is rate limited for publishing, so a delay is required in
-  // between feed->save events. In this example, we will wait three seconds
-  // (1000 milliseconds == 1 second) during each loop.
-  delay(3000);*/
 }
 
 //-------------------------------------------------------------------------------------------------
