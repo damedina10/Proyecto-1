@@ -39,27 +39,27 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 #define sensor 34
 
 //LEDs del RGB
-#define Ledrojo 27
-#define Ledverde 14
-#define Ledazul 12
+#define Ledrojo 23
+#define Ledverde 2
+#define Ledazul 4
 
 //Servo
 #define servo 5
 
 //Displays de 7 segmentos
-#define sA 32
-#define sB 33
-#define sC 25
-#define sD 26
-#define sE 17
-#define sF 16
-#define sG 4
-#define sDP 2
+#define sA 25
+#define sB 26
+#define sC 27
+#define sD 13
+#define sE 12
+#define sF 33
+#define sG 32
+#define sDP 14
 
 //Transistores para los displays
-#define display1 3
-#define display2 21
-#define display3 19 
+#define display1 21
+#define display2 19
+#define display3 18 
 
 //Timer 
 #define prescaler 80
