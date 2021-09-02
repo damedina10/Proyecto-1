@@ -224,41 +224,43 @@ void loop() {
       //El servo apunta hacia el LED rojo
       ledcWrite(0,27);
     }
+    
+    //Despliegue de la temperatura en los displays de 7 segmentos
+    if(contadorT == 0){
+      //Se enciende el display de las decenas
+      digitalWrite(display1,1);
+      digitalWrite(display2,0);
+      digitalWrite(display3,0);
+      //Llamamos a la función desplegardigito para que muestre las decenas
+      desplegardigito(decenas);
+      //Llamamos a la función del punto para decirle que no queremos el punto
+      desplegarpunto(0);
+    }
+    if(contadorT == 1){
+      //Se enciende el display de las unidades
+      digitalWrite(display1,0);
+      digitalWrite(display2,1);
+      digitalWrite(display3,0);
+      //Llamamos a la función desplegardigito para que muestre las unidades
+      desplegardigito(unidades);
+      //Llamamos a la función del punto para decirle que queremos el punto
+      desplegarpunto(1);
+    }
+    if(contadorT == 2){
+      //Se enciende el display de los decimales
+      digitalWrite(display1,0);
+      digitalWrite(display2,0);
+      digitalWrite(display3,1);
+      //Llamamos a la función desplegardigito para que muestre el decimal
+      desplegardigito(decimal);
+      //Llamamos a la función del punto para decirle que no queremos el punto
+      desplegarpunto(0);
+    }
   }
 
-/*
-  //Despliegue de la temperatura en los displays de 7 segmentos
-  if(contadorT == 0){
-    //Se enciende el display de las decenas
-    digitalWrite(display1,1);
-    digitalWrite(display2,0);
-    digitalWrite(display3,0);
-    //Llamamos a la función desplegardigito para que muestre las decenas
-    desplegardigito(decenas);
-    //Llamamos a la función del punto para decirle que no queremos el punto
-    desplegarpunto(0);
-  }
-  if(contadorT == 1){
-    //Se enciende el display de las unidades
-    digitalWrite(display1,0);
-    digitalWrite(display2,1);
-    digitalWrite(display3,0);
-    //Llamamos a la función desplegardigito para que muestre las unidades
-    desplegardigito(unidades);
-    //Llamamos a la función del punto para decirle que queremos el punto
-    desplegarpunto(1);
-  }
-   if(contadorT == 2){
-    //Se enciende el display de los decimales
-    digitalWrite(display1,0);
-    digitalWrite(display2,0);
-    digitalWrite(display3,1);
-    //Llamamos a la función desplegardigito para que muestre el decimal
-    desplegardigito(decimal);
-    //Llamamos a la función del punto para decirle que no queremos el punto
-    desplegarpunto(0);
-  }
+
   
+  /*
   //Segmento de Adafruit IO
   io.run();
 
