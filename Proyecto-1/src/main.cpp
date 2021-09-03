@@ -24,7 +24,7 @@
 #define IO_KEY "aio_yHBt60BiPm4zFPanX5d01lHzwO4J"
 
 // WIFI
-#define WIFI_SSID "TIGO-656A-5G"
+#define WIFI_SSID "TIGO-656A"
 #define WIFI_PASS "4D9697500333"
 
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
@@ -82,7 +82,7 @@ double alpha = 0.05;       // Factor de suavizado (0-1)
 
 //Adafruit IO
 int count = 0;
-AdafruitIO_Feed *temperaturaFeed = io.feed("Temperatura");
+AdafruitIO_Feed *temperaturaFeed = io.feed("temperatura");
 
 //Instanciamos el timer
 hw_timer_t * timer = NULL;
@@ -192,7 +192,6 @@ void loop() {
     lectura = analogReadMilliVolts(sensor);
     adcFiltradoEMA = (alpha * lectura) + ((1.0 - alpha) * adcFiltradoEMA);
     temperatura = adcFiltradoEMA/10.0;
-    Serial.println(temperatura);
 
     //Obtención de las decenas
     decenas = temperatura / 10;
@@ -239,7 +238,7 @@ void loop() {
     io.run();
 
     // save count to the 'counter' feed on Adafruit IO
-    Serial.print("sending -> ");
+    Serial.print("sending temperatura-> ");
     Serial.println(temperatura);
     temperaturaFeed->save(temperatura);
   }
